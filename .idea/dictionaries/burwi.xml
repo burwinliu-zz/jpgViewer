@@ -3,7 +3,9 @@
     <words>
       <w>burwin</w>
       <w>endblock</w>
+      <w>endfor</w>
       <w>initkwargs</w>
+      <w>prog</w>
     </words>
   </dictionary>
 </component>

@@ -15,18 +15,26 @@ Including another URLconf
 """
 
 from django.contrib import admin
-# from django.urls import path
 from django.conf.urls import url
 from django.contrib.auth import views
 from django.views.generic.base import TemplateView
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from jpgSite import settings
 import lviews
+
+# from django.urls import path
 
 
 urlpatterns = [
-    # url(r'^register/$', myviers.RegisterView.as_view(), name = 'something'),
-    url(r'^login/$', views.LoginView.as_view(), name='login'),
-    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
-    url(r'^register/$', lviews.register, name='register'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^login/?$', views.LoginView.as_view(), name='login'),
+    url(r'^logout/?$', views.LogoutView.as_view(), name='logout'),
+    url(r'^register/?$', lviews.register, name='register'),
+    url(r'^admin/?', admin.site.urls),
+    url(r'^password_reset/?', views.PasswordResetView.as_view(), name='password_reset'),
+    url(r'^view_cam/?', lviews.camera, name='view_stream'),
     url('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

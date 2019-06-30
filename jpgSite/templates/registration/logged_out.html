@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-{% extends 'default.html' %}
-<body>
-    <h1>LOGGED OUT</h1>
-</body>
-</html>
+{% extends "default.html" %}
+
+{% block content %}
+  <p>Logged out!</p>
+  <a href="{% url 'login'%}">Click here to login again</a>
+  <a href="{% url 'home'%}"> Home Screen</a>
+{% endblock %}
