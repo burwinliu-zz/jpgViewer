@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 
 {% extends "default.html" %}
+{% load static %}
 {% block content %}
     {% if user.is_authenticated %}
     <p>
         Testing Camera in prog <br>
-        Please follow the rules and be good
+        Please follow the rules and be good <br>
+        {{media_url}}
         <br>
-        <a>  <img src="../media/photo.jpg" alt = "failure"></a>
+        {% static 'images/photo.jpg' %}
+        <br>
+        {{images}}
+        <br>
+        <a>  <img src="{{media_url}}\images\test.png" alt = "failure"></a>
+        <a>  <img src="/media/images/test.png" alt = "failure"></a>
+        <a>  <img src="{{test}}" alt = "Failed pull"></a>
+
+        <br>
+
+        <a>  <img src="/static/images/photo.jpg" alt = "failure"></a>
+        <a>  <img src="{% static 'images/photo.jpg' %}" alt = "failure"></a>
         <video width="320" height="240" controls>
-            <source src="../media/movie.mp4" type="video/mp4">
+            <source src="{% static 'images/movie.mp4' %}" type="video/mp4">
         </video>
     </p>
     {% else %}

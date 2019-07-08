@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% extends "default.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <p>
+        Testing Camera in prog <br>
+        Please follow the rules and be good
+        <br>
+        <img src="../opencv.png" alt = "failure">
+    </p>
+    {% else %}
+    <p>
+        You aren't supposed to be here
+    </p>
+    {% endif %}
+{% endblock %}
