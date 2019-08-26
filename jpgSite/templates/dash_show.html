@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'default.html' %}
+{% load static %}
+    {% block title %}Camera Stream{% endblock %}
+    {% block header %}
+        <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+        <style>
+            video {
+               width: 640px;
+               height: 360px;
+            }
+        </style>
+    {% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block scripts %}
+        <script src="{% static 'scripts/camera.js' %}"></script>
+        <div>
+           <video data-dashjs-player autoplay src="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" controls></video>
+       </div>
+    {% endblock %}

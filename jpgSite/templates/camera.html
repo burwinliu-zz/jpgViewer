@@ -2,6 +2,7 @@
 
 {% extends "default.html" %}
 {% load static %}
+{% block title %} Camera {% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
     <p>
@@ -13,7 +14,7 @@
         <br>
         {{images}}
         <br>
-        <a>  <img src="{{media_url}}\images\test.png" alt = "failure"></a>
+        <a>  <img src="{{media_url}}\images\test.png" alt = " as failure"></a>
         <a>  <img src="/media/images/test.png" alt = "failure"></a>
         <a>  <img src="{{test}}" alt = "Failed pull"></a>
 

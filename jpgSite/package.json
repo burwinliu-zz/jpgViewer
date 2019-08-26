@@ -1,0 +1,28 @@
+{
+  "name": "jpgsite",
+  "version": "1.0.0",
+  "description": "Site to display video and information from a live web camera",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burwinliu/jpgVIewer.git"
+  },
+  "keywords": [
+    "dash.js",
+    "Django",
+    "Python",
+    "web",
+    "app"
+  ],
+  "author": "Burwin Liu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/burwinliu/jpgVIewer/issues"
+  },
+  "homepage": "https://github.com/burwinliu/jpgVIewer#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}

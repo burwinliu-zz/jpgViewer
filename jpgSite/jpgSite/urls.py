@@ -33,9 +33,10 @@ urlpatterns = [
     url(r'^register/?$', lviews.register, name='register'),
     url(r'^admin/?', admin.site.urls),
     url(r'^password_reset/?', views.PasswordResetView.as_view(), name='password_reset'),
-    url(r'^view_cam/?', lviews.camera, name='view_stream'),
+    url(r'^view_cam/?', lviews.camera, name='view_cam'),
     url(r'^render/?', lviews.render_request_simple, name='render'),
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^view_stream/?', lviews.view_stream, name='view_stream')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

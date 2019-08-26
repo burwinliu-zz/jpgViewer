@@ -19,13 +19,13 @@ from os.path import join
 
 def register(request):
     if request.method == 'POST':
-        print(request.POST)
         f = forms.UserCreationForm(request.POST)
         if f.is_valid():
             f.save()
             messages.success(request, 'Account created successfully')
             return redirect('home')
-
+        else:
+            pass
     else:
         f = forms.UserCreationForm()
 
@@ -44,6 +44,23 @@ def camera(request):
 
 def test(request):
     return render(request, 'test.html')
+
+
+def render_request_simple(request):
+    simple = cv2.VideoCapture(0)
+    return_value, image = simple.read()
+    cv2.imwrite('./media/images/opencv.png', image)
+    del simple
+    return render(request, 'render_simple.html')
+
+
+def view_stream(request):
+    return render(request, 'dash_show.html')
+
+
+def render_request_stream(request):
+    return StreamingHttpResponse(_helper(),
+                                 content_type="multipart/x-mixed-replace;boundary=frame")
 
 
 class VideoCamera(object):
@@ -65,7 +82,7 @@ class VideoCamera(object):
             (self._grabbed, self._frame) = self.video.read()
 
 
-def helper():
+def _helper():
     try:
         web_camera = VideoCamera()
         while True:
@@ -73,18 +90,5 @@ def helper():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
     finally:
-        if web_camera:
+        if 'web_camera' in locals():
             web_camera.__del__()
-
-
-def render_request_stream(request):
-    return StreamingHttpResponse(helper(),
-                                 content_type="multipart/x-mixed-replace;boundary=frame")
-
-
-def render_request_simple(request):
-    simple = cv2.VideoCapture(0)
-    return_value, image = simple.read()
-    cv2.imwrite('opencv.png', image)
-    del simple
-    return render(request, 'render_simple.html')

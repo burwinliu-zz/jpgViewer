@@ -1,16 +1,18 @@
-#JPEG Website Model Viewer 
+# JPEG Website Model Viewer 
+
+## STILL IN PROGRESS
 
 This project was made with the purpose of taking in a buffer of 
 motion JPEG and displaying it into a website. 
 
-####STILL IN PROGRESS
+### Built with:
+* Django
+* dash.js (https://github.com/Dash-Industry-Forum/dash.js/)
 
-Built with
-1. Django - Web framework
 
+### Licence
+    * Apache-2.0
 
-MORE TO COME
-
-####Authors
+### Authors
     - Burwin Liu (Main Developer)
     - Bin Liu (Inspiration and Guide)
