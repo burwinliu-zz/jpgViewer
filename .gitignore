@@ -3,3 +3,4 @@ venv
 db.sqlite3
 dash.js
 node_modules
+ignore.png

@@ -5,9 +5,9 @@
     <p> TEST 2.0 </p>
     {% if user.is_authenticated %}
         You're logged in {{ user.username }}!
-        <p><a href="{% url 'view_stream' %}">View the web-cam here!</a> </p>
-        <p><a href="{% url 'logout' %}">logout</a></p>
-        <a href="{% url 'render' %}">render</a></p>
+        <p><a href="{% url 'view_cam' %}">View the web-cam here!</a> </p>
+        <p><a href="{% url 'view_stream' %}">View the web-stream here!</a> </p>
+        <a href="{% url 'render' %}">render Here</a></p>
     {% else %}
         <p>Please login to see this page.</p>
         <p><a href="{% url 'login' %}">Login Here</a></p>

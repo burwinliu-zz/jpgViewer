@@ -27,12 +27,17 @@ from jpgSite import lviews
 
 
 urlpatterns = [
+    # Login and user management
     url(r'^login/?$', views.LoginView.as_view(), name='login'),
-    url(r'^test/?', lviews.test),
     url(r'^logout/?$', views.LogoutView.as_view(), name='logout'),
     url(r'^register/?$', lviews.register, name='register'),
     url(r'^admin/?', admin.site.urls),
     url(r'^password_reset/?', views.PasswordResetView.as_view(), name='password_reset'),
+
+    # Development stuff
+    url(r'^test/?', lviews.test),
+
+    # Actual pages
     url(r'^view_cam/?', lviews.camera, name='view_cam'),
     url(r'^render/?', lviews.render_request_simple, name='render'),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),

@@ -49,7 +49,7 @@ def test(request):
 def render_request_simple(request):
     simple = cv2.VideoCapture(0)
     return_value, image = simple.read()
-    cv2.imwrite('./media/images/opencv.png', image)
+    cv2.imwrite('./media/images/ignore.png', image)
     del simple
     return render(request, 'render_simple.html')
 

@@ -4,16 +4,11 @@
     {% block title %}Camera Stream{% endblock %}
     {% block header %}
         <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-        <style>
-            video {
-               width: 640px;
-               height: 360px;
-            }
-        </style>
+        <link rel="stylesheet" href=" {% static 'styles/dash.css' %} ">
     {% endblock %}
 
     {% block content %}
-
+        <p>This is for the display of incoming data</p>
     {% endblock %}
 
     {% block scripts %}
