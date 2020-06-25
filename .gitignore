@@ -4,3 +4,4 @@ db.sqlite3
 dash.js
 node_modules
 ignore.png
+opencv-4.3.0
