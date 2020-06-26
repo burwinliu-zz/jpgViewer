@@ -1,31 +1,39 @@
-import base64
+import pickle
+import struct
 import time
 
 import cv2
-import zmq
 
-context = zmq.Context()
-footage_socket = context.socket(zmq.PUB)
-footage_socket.connect('tcp://localhost:5555')
+import socket
 
-camera = cv2.VideoCapture(0)  # init the camera
 
-frame_rate = 15
-prev = 0
+HOST = '127.0.0.1'  # The server's hostname or IP address
+PORT = 8000        # The port used by the server
 
-while True:
-    time_elapsed = time.time() - prev
-    res, image = camera.read()
 
-    if time_elapsed > 1. / frame_rate:
-        try:
-            grabbed, frame = camera.read()  # grab the current frame
-            frame = cv2.resize(frame, (640, 480))  # resize the frame
-            encoded, buffer = cv2.imencode('.jpg', frame)
-            jpg_as_text = base64.b64encode(buffer)
-            footage_socket.send(jpg_as_text)
+def init_client():
+    frame_rate = 10
+    prev = 0
 
-        except KeyboardInterrupt:
-            camera.release()
-            cv2.destroyAllWindows()
-            break
+    cap = cv2.VideoCapture(0)
+    clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientsocket.connect((HOST, PORT))
+
+    while True:
+        time_elapsed = time.time() - prev
+        if time_elapsed > 1. / frame_rate:
+            prev = time.time()
+
+            ret, frame = cap.read()
+            # Serialize frame
+            data = pickle.dumps(frame)
+
+            # Send message length first
+            message_size = struct.pack("L", len(data))
+
+            # Then data
+            clientsocket.sendall(message_size + data)
+
+
+if __name__ == "__main__":
+    init_client()

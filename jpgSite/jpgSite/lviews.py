@@ -56,39 +56,3 @@ def render_request_simple(request):
 
 def view_stream(request):
     return render(request, 'dash_show.html')
-
-
-def render_request_stream(request):
-    return StreamingHttpResponse(_helper(),
-                                 content_type="multipart/x-mixed-replace;boundary=frame")
-
-
-class VideoCamera(object):
-    def __init__(self):
-        self._video = cv2.VideoCapture(0)
-        (self._grabbed, self._frame) = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
-
-    def __del__(self):
-        self.video.release()
-
-    def get_frame(self):
-        image = self.frame
-        ret, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
-
-    def update(self):
-        while True:
-            (self._grabbed, self._frame) = self.video.read()
-
-
-def _helper():
-    try:
-        web_camera = VideoCamera()
-        while True:
-            frame = web_camera.get_frame()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-    finally:
-        if 'web_camera' in locals():
-            web_camera.__del__()
